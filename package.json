@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "updata": "git submodule foreach git pull origin master"
   },
   "dependencies": {
     "axios": "^0.27.2",
