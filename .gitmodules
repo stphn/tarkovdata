@@ -1,3 +1,0 @@
-[submodule "tdata"]
-	path = tdata
-	url = git@github.com:thaddeus/tarkovdata.git
