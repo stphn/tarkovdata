@@ -14,3 +14,30 @@ a {
 * {
   box-sizing: border-box;
 }
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.bold.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.black.woff2') format('woff2');
+  font-weight: 700;
+}
+
+html,
+body {
+  font-family: 'Bender';
+}
