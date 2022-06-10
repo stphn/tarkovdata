@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
+import styles from './Giver.module.scss'
 
 type GiverProps = {
     who: number
 }
 
-const Vendors = [
+const Traders = [
     {
         id: 0,
         name: 'Prapor',
@@ -42,18 +43,18 @@ const Vendors = [
 ]
 
 export const Giver: React.FC<GiverProps> = ({ who }) => {
-    const allVendors = Vendors.map((vendor) =>
-        vendor.id === who ? (
-            <div className=''>
-                <Image
-                    src={'/headshots/' + vendor.name + 'Headshot.jpg'}
-                    alt={vendor.name}
-                    width={24}
-                    height={24}
-                />
-            </div>
+    const allTarders = Traders.map((trader) =>
+        trader.id === who ? (
+            <Image
+                key={trader.id}
+                className={styles.trader}
+                src={`/headshots/${trader.name}Headshot.jpg`}
+                alt={trader.name}
+                width={24}
+                height={24}
+            />
         ) : null
     )
 
-    return <>{allVendors}</>
+    return <>{allTarders}</>
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 const baseURL = 'https://tarkovtracker.github.io/tarkovdata/quests.json'
-const Context = React.createContext<any>(null)
+
+const Context = React.createContext<any>([])
 
 type quest = {
     id: number
@@ -24,16 +25,16 @@ type quest = {
 }
 
 function QuestContext({ children }: any) {
-    const [allQuests, setAllQuests] = React.useState<any>(null)
+    const [allQuests, setAllQuests] = React.useState<any>([])
 
     React.useEffect(() => {
         axios.get(baseURL).then((response) => {
             setAllQuests(response.data)
-            //console.log(response.data)
+            console.log(response.data)
         })
     }, [])
 
-    if (!setAllQuests) return null
+    //if (!setAllQuests) return 'error'
 
     // function toggleFavorite(id: number) {
     //     const updatedArr = allQuests?.map((quest) => {

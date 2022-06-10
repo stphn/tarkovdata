@@ -1,1 +1,1 @@
-export * from './Quest'
+export * from './Quests'

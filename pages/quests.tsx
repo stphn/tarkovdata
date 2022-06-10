@@ -1,6 +1,7 @@
 import { Footer } from '../components/Footer'
 import { Heading } from '../components/Heading'
 import type { NextPage } from 'next'
+import { QuestContext } from '../context'
 import { Quests } from '../components/Quests'
 import styles from '../styles/Home.module.css'
 
@@ -14,9 +15,9 @@ const Quest: NextPage = () => {
 
             <main className={styles.main}>
                 <h1>Quests:</h1>
-                <div className={styles.grid}>
+                <QuestContext>
                     <Quests />
-                </div>
+                </QuestContext>
             </main>
 
             <Footer />
