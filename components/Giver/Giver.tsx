@@ -1,60 +1,28 @@
 import Image from 'next/image'
 import React from 'react'
 import styles from './Giver.module.scss'
+import traders from '../../tarkovdata/traders.json'
 
 type GiverProps = {
-    who: number
+    giver?: number
 }
-
-const Traders = [
-    {
-        id: 0,
-        name: 'Prapor',
-    },
-
-    {
-        id: 1,
-        name: 'Therapist',
-    },
-    {
-        id: 2,
-        name: 'Skier',
-    },
-    {
-        id: 3,
-        name: 'Peacekeeper',
-    },
-    {
-        id: 4,
-        name: 'Mechanic',
-    },
-    {
-        id: 5,
-        name: 'Ragman',
-    },
-    {
-        id: 6,
-        name: 'Jaeger',
-    },
-    {
-        id: 7,
-        name: 'Fence',
-    },
-]
-
-export const Giver: React.FC<GiverProps> = ({ who }) => {
-    const allTarders = Traders.map((trader) =>
-        trader.id === who ? (
-            <Image
-                key={trader.id}
-                className={styles.trader}
-                src={`/headshots/${trader.name}Headshot.jpg`}
-                alt={trader.name}
-                width={24}
-                height={24}
-            />
-        ) : null
+export const Giver: React.FC<GiverProps> = ({ giver }) => {
+    const Givers = (Object.keys(traders) as (keyof typeof traders)[]).map(
+        (trader) => {
+            const g = traders[trader]
+            if (giver === g.id) {
+                return (
+                    <Image
+                        key={g.id}
+                        className={styles.trader}
+                        src={`/headshots/${g.locale.en}Headshot.jpg`}
+                        alt={g.name}
+                        width={24}
+                        height={24}
+                    />
+                )
+            }
+        }
     )
-
-    return <>{allTarders}</>
+    return <>{Givers}</>
 }
