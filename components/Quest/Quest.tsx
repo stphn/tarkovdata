@@ -1,63 +1,91 @@
 import { Giver } from '../Giver'
-import Image from 'next/image'
+import { Item } from '../Item'
+import { ItemImage } from '../ItemImage'
+import { Location } from '../Location'
 import React from 'react'
-import classNames from 'classnames'
 import styles from './Quest.module.scss'
 
 export type QuestProps = {
-    quest: {
-        id: number
-        objectives: [
-            {
-                type: string
-                target: string
-                number: number
-                location: number
-                id: number
-            }
-        ]
-        title: string
-        wiki: string
-        unlocks: string
-        exp: number
-        giver: number
-        require: { level: number; quests: number }
-    }
+    id?: number
+    objectives?: [
+        {
+            type: string
+            target: string
+            number: number
+            location: number
+            id: number
+        }
+    ]
+    title?: string
+    wiki?: string
+    unlocks?: string
+    exp?: number
+    giver: number
+    require?: { level: number; quests: number }
 }
 
-const assets = 'https://storage.tarkov-database.com/assets/icons/1-1/128/'
-
-export const Quest: React.FC<QuestProps> = ({ quest }: QuestProps) => {
-    const allObjectives = quest.objectives.map((obj, i) => {
-        const handleNameDisplay = () => {
-            if (obj.type === 'kill') {
-                return `Eliminate  ${obj.number} ${obj.target}`
-            } else if (obj.type === 'collect') {
-                return (
-                    <>
-                        <span>Hand over {obj.number} </span>
-                        <Image
-                            src={`${assets}${obj.target}.png`}
-                            alt={obj.target}
-                            width={56}
-                            height={56}
-                        />
-                    </>
-                )
-            } else return obj.type
+export const Quest: React.FC<QuestProps> = ({
+    title,
+    objectives,
+    giver,
+    wiki,
+    exp,
+}) => {
+    const allObjectives = objectives?.map((obj, i) => {
+        if (obj.type === 'collect') {
+            return (
+                <div key={i}>
+                    Hand over {obj.number}
+                    <Item itemName={obj.target} />
+                    <Location mapName={obj.location} />
+                    <ItemImage image={obj.target} />
+                </div>
+            )
+        } else if (obj.type === 'key') {
+            return (
+                <div key={i}>
+                    {obj.number}
+                    <Item itemName={obj.target} />
+                    <span> needed </span>
+                    <Location mapName={obj.location} />
+                    <ItemImage image={obj.target} />
+                </div>
+            )
         }
-
-        return <div key={i}>{handleNameDisplay()}</div>
+        if (obj.type === 'kill') {
+            return `Eliminate  ${obj.number} ${obj.target}`
+        }
+        if (obj.type === 'find') {
+            return (
+                <div key={i}>
+                    Find {obj.number}
+                    <Item itemName={obj.target} />
+                    <Location mapName={obj.location} />
+                    <ItemImage image={obj.target} />
+                </div>
+            )
+        }
+        if (obj.type === 'mark') {
+            return (
+                <div key={i}>
+                    Mark {obj.number} {obj.target}
+                    <Item itemName={obj.target} />
+                    <Location mapName={obj.location} />
+                </div>
+            )
+        }
     })
     return (
         <div className={styles.quest}>
             <div className={styles.quest__header}>
-                <Giver who={quest.giver} />
-                <p>{quest.title}</p>
+                <Giver giver={giver} />
+                <a className={styles.quest__link} href={wiki}>
+                    {title}
+                </a>
             </div>
+            <p>{exp && `${(exp / 100).toFixed(3)} XP`}</p>
 
-            <p>{quest.exp}</p>
-            <p>{allObjectives}</p>
+            {allObjectives}
         </div>
     )
 }
