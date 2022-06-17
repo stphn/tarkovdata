@@ -1,0 +1,90 @@
+$color: var(--secondary);
+$border: 10px solid;
+@import '../../../styles/mixins.scss';
+
+.container {
+    position: absolute;
+    padding: 1em;
+    font-size: 12px;
+    cursor: default;
+    border-radius: 4px;
+    color: var(--on-secondary);
+    /* white-space: nowrap; */
+    // min-width: 20vw;
+    background-color: $color;
+    animation: fadeIn ease-in-out 0.65s;
+    @include elevation(3);
+}
+
+.arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.top {
+    bottom: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    .arrow {
+        bottom: -10px;
+        left: calc(50% - 10px);
+        border-right: $border transparent;
+        border-top: $border $color;
+        border-left: $border transparent;
+    }
+}
+
+.right,
+.left {
+    top: 50%;
+    transform: translateY(-50%);
+
+    .arrow {
+        top: calc(50% - 10px);
+        border-top: $border transparent;
+        border-bottom: $border transparent;
+    }
+}
+
+.right {
+    left: calc(100% + 18px);
+
+    .arrow {
+        left: -10px;
+        border-right: $border $color;
+    }
+}
+
+.left {
+    right: calc(100% + 18px);
+
+    .arrow {
+        right: -10px;
+        border-left: $border $color;
+    }
+}
+
+.bottom {
+    top: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    .arrow {
+        top: -10px;
+        left: calc(50% - 10px);
+        border-right: $border transparent;
+        border-bottom: $border $color;
+        border-left: $border transparent;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,95 @@
+html {
+  --primary: #6750a4;
+  --primary-container: #eaddff;
+  --secondary: #625b71;
+  --secondary-container: #e8def8;
+  --tertiary: #7d5260;
+  --tertiary-container: #ffd8e4;
+  --surface: #fffbfe; /* 1dp elevation surface overlay */
+  --surface-variant: #e7e0ec; /* 1dp elevation surface overlay */
+  --background: #fff; /* 0dp elevation surface overlay */
+  --error: #b3261e;
+  --error-container: #f9dedc;
+  --on-primary: #ffffff;
+  --on-primary-container: #21005e;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #1e192b;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #370b1e;
+
+  --on-surface: #fff;
+  --on-surface-variant: #49454e;
+  --on-error: #ffffff;
+  --on-error-container: #370b1e;
+  --on-background: #fff;
+  --outline: #79747e;
+  --shadow: #000;
+  --surface-tint-color: #000;
+  --inverse-surface: #313033;
+  --inverse-on-surface: #f4eff4;
+  --inverse-primary: #d0bcff;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: var(on-surface-variant);
+  background-color: var(--background);
+
+  font-family: 'bender', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
+}
+
+/* Transitons for smooth theme change */
+*:not(body) {
+  transition: color 0.4s ease, background-color 0.4s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.bold.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Bender';
+  src: url('/fonts/bender.black.woff2') format('woff2');
+  font-weight: 700;
+}
+
+.main {
+  display: flex;
+
+  &__sidebar {
+    background-color: var(--surface);
+    height: 100vh;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+  }
+}
+.objective {
+  margin-bottom: 0.25em;
+}
