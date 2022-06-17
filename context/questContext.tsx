@@ -1,24 +1,54 @@
-import React from 'react'
-import allQuests from '../tarkovdata/quests.json'
+import React, { useEffect, useState } from 'react'
+
+import { QuestProps } from '../components/Quest'
+import quests from '../tarkovdata/quests.json'
+
 const Context = React.createContext<any>(null)
 
-//console.log(questsData)
+const withCompletion: any = quests.map((quest) => {
+    const completion = {
+        isCompleted: false,
+    }
+    Object.assign(quest, completion)
+    return quest
+})
 
 function QuestContext({ children }: any) {
-    // function toggleFavorite(id: number) {
-    //     const updatedArr = allQuests?.map((quest) => {
-    //         if (allQuests.id === id) {
-    //             console.log(id)
-    //             console.log(!allQuests.isFavorite)
-    //             return { ...quest, isFavorite: !quest.isFavorite }
-    //         }
-    //         return quest
-    //     })
+    const [allQuests, setAllQuests] = useState(withCompletion)
+    const [completion, setCompletion] = useState(false)
+    // keeps state of the current completion
 
-    //     setAllQuests(updatedArr)
-    // }
+    function toggleCompleted(id: number) {
+        const updatedArr: QuestProps = allQuests.map((quest: QuestProps) => {
+            //console.log(quest.id, id)
+            const lastCompletion = window.localStorage.getItem(
+                `${JSON.stringify(id)}`
+            )
+            if (quest.id === id) {
+                if (lastCompletion === 'true') {
+                    setCompletion(true)
+                } else {
+                    setCompletion(false)
+                }
 
-    return <Context.Provider value={{ allQuests }}>{children}</Context.Provider>
+                window.localStorage.setItem(
+                    `${JSON.stringify(id)}`,
+                    JSON.stringify(!quest.isCompleted)
+                )
+
+                return { ...quest, isCompleted: !quest.isCompleted }
+            }
+            return quest
+        })
+
+        setAllQuests(updatedArr)
+    }
+
+    return (
+        <Context.Provider value={{ allQuests, toggleCompleted }}>
+            {children}
+        </Context.Provider>
+    )
 }
 
 export { QuestContext, Context }

@@ -1,10 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
-import items from '../../tarkovdata/items.en.json'
 const assets = 'https://storage.tarkov-database.com/assets/icons/1-1/128/'
-type Props = {
-    image: string
+//const assets = 'https://assets.tarkov-tools.com/'
+interface Props {
+    image?: string
+    width?: number
+    height?: number
 }
-export const ItemImage: React.FC<Props> = ({ image }) => (
-    <Image src={`${assets}${image}.png`} alt={image} width={56} height={56} />
+export const ItemImage = ({ image, width = 56, height = 56 }: Props) => (
+    <Image
+        src={`${assets}${image}.png`}
+        alt={image}
+        width={width}
+        height={height}
+    />
 )

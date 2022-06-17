@@ -1,17 +1,48 @@
 import { Quest, QuestProps } from '../../components/Quest'
 
 import React from 'react'
-import allQuests from '../../tarkovdata/quests.json'
+import quests from '../../tarkovdata/quests.json'
 
-const QuestPost: React.FC<QuestProps> = ({ title, objectives, giver, exp }) => {
+const withCompletion: any = quests.map((quest) => {
+    const completion = {
+        isCompleted: false,
+    }
+    Object.assign(quest, completion)
+    return quest
+})
+
+const QuestPost = ({
+    locales,
+    objectives,
+    giver,
+    exp,
+    wiki,
+    require,
+    isCompleted,
+    nokappa,
+    title,
+    id,
+}: QuestProps) => {
     return (
-        <Quest title={title} objectives={objectives} giver={giver} exp={exp} />
+        <Quest
+            key={id}
+            title={title}
+            objectives={objectives}
+            giver={giver}
+            exp={exp}
+            wiki={wiki}
+            locales={locales}
+            require={require}
+            id={id}
+            nokappa={nokappa}
+            isCompleted={isCompleted}
+        />
     )
 }
 
 export function getStaticProps(context: any) {
     const { slug } = context.params
-    const data = allQuests[slug]
+    const data = withCompletion[slug]
     return {
         props: {
             ...data,
@@ -20,8 +51,8 @@ export function getStaticProps(context: any) {
 }
 
 export function getStaticPaths() {
-    const paths = allQuests.map((quest) => ({
-        params: { slug: quest.id.toString() },
+    const paths = withCompletion.map((quest: any) => ({
+        params: { slug: quest?.id.toString() },
     }))
 
     // We'll pre-render only these paths at build time.

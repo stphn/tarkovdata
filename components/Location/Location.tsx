@@ -2,7 +2,7 @@ import React from 'react'
 import maps from '../../tarkovdata/maps.json'
 
 type Props = {
-    mapName: number
+    mapName?: number
 }
 export const Location: React.FC<Props> = ({ mapName }) => {
     const Locations = (Object.keys(maps) as (keyof typeof maps)[]).map(

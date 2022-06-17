@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-type HeaderProps = {
+interface HeaderProps {
     title: string
     content: string
 }
 
-export const Heading: React.FC<HeaderProps> = ({ title, content }) => {
+export const Heading = ({ title, content }: HeaderProps) => {
     return (
         <Head>
             <title>{title}</title>

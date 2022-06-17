@@ -1,14 +1,21 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 import type { AppProps } from 'next/app'
-import { Navigation } from '../components/Navigation'
+import Sidebar from '../components/Sidebar/Sidebar'
+import { ThemeProvider } from '../context/themeContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <>
-            <Navigation />
-            <Component {...pageProps} />
-        </>
+        <ThemeProvider>
+            <div className='main'>
+                <div className='main__sidebar'>
+                    <Sidebar />
+                </div>
+                <div className='main__content'>
+                    <Component {...pageProps} />
+                </div>
+            </div>
+        </ThemeProvider>
     )
 }
 

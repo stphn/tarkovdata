@@ -1,16 +1,14 @@
 import { Footer } from '../components/Footer'
 import { Heading } from '../components/Heading'
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
     return (
-        <div className={styles.container}>
+        <div>
             <Heading title='Welcome to Tarkov' content='Tarkov data sources' />
-
-            <main className={styles.main}>
+            <main>
                 <h1>Home:</h1>
-                <div className={styles.grid}>Hello world</div>
+                <div>Hello world</div>
             </main>
             <Footer />
         </div>
