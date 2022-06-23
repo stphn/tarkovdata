@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn updata && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "updata": "git submodule foreach git pull origin master"
