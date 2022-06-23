@@ -18,7 +18,6 @@ const QuestPost = ({
     exp,
     wiki,
     require,
-    isCompleted,
     nokappa,
     title,
     id,
@@ -35,7 +34,6 @@ const QuestPost = ({
             require={require}
             id={id}
             nokappa={nokappa}
-            isCompleted={isCompleted}
         />
     )
 }

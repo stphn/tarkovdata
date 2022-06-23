@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { supabase } from '../utils'
+import { supabase } from '../lib'
 import { useRouter } from 'next/router'
 
 const SignUp = () => {
