@@ -1,5 +1,5 @@
 import { Collect, Find, Key, Kill, Mark } from './index'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Context } from '../../context/questContext'
 import { GiTrophy } from 'react-icons/gi'
@@ -16,6 +16,7 @@ export interface QuestProps {
             target: string
             tool: string
             hint: string
+            /**The amount of target*/
             number: number
             location: number
             id: number
@@ -29,7 +30,6 @@ export interface QuestProps {
     giver: number
     nokappa?: boolean
     require: { level: number; quests: [number] }
-    isCompleted?: boolean
 }
 
 export const Quest = ({
@@ -40,10 +40,28 @@ export const Quest = ({
     locales,
     require,
     nokappa,
-    isCompleted,
     id,
 }: QuestProps) => {
-    const { toggleCompleted } = useContext(Context)
+    const [complete, setComplete] = useState(false)
+
+    function handleClick() {
+        // toggleCompleted(id)
+        setComplete(!complete)
+
+        window.localStorage.setItem(
+            // set the key to the id of the quest
+            JSON.stringify(id),
+            // set the value to the opposite of the current value
+            JSON.stringify(!complete)
+        )
+    }
+
+    useEffect(() => {
+        const retrieve = window.localStorage.getItem(JSON.stringify(id))
+        if (retrieve === 'true') {
+            setComplete(true)
+        }
+    }, [id])
 
     const allObjectives = objectives?.map((obj) => {
         if (obj.type === 'collect') {
@@ -101,8 +119,9 @@ export const Quest = ({
     })
     return (
         <div
+            onClick={() => handleClick()}
             className={
-                isCompleted
+                complete
                     ? classNames(styles.quest, styles.inactive)
                     : classNames(styles.quest)
             }
@@ -114,16 +133,16 @@ export const Quest = ({
                     &nbsp;{locales && locales.en}
                 </a>
             </div>
-            <p>
+            <p className={styles.quest__trophy}>
                 <GiTrophy />
                 {exp && `${(exp / 100).toFixed(3)} XP`}
             </p>
             <p>Requires level {require && require.level}</p>
-            <p>{JSON.stringify(nokappa)}</p>
-            <p>{`Completed: ${JSON.stringify(isCompleted)}`}</p>
 
+            <p>{nokappa && `Kappa: ${JSON.stringify(nokappa)}`}</p>
+            <p>{`Completed: ${JSON.stringify(complete)}`}</p>
             {allObjectives}
-            <button onClick={() => toggleCompleted(id)}>toggleCompleted</button>
+            <button onClick={() => handleClick()}>toggleCompleted</button>
         </div>
     )
 }

@@ -6,6 +6,7 @@ const nextConfig = {
             'static.wikia.nocookie.net',
             'storage.tarkov-database.com',
             'assets.tarkov-tools.com',
+            'avatars.githubusercontent.com',
         ],
     },
 }
