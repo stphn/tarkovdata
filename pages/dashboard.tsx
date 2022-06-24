@@ -74,6 +74,7 @@ const Dashboard = () => {
                 </p>
                 {user.user_metadata.avatar_url && (
                     <Image
+                        className='mx-auto object-cover rounded-full h-20 w-20'
                         src={user.user_metadata.avatar_url}
                         width={89}
                         height={89}

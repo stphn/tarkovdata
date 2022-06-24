@@ -1,3 +1,4 @@
+import { Level } from '../level/level'
 import { MenuItem } from '../MenuItem/MenuItem'
 import React from 'react'
 import { Switch } from '../Switch'
@@ -20,6 +21,7 @@ export const Sidebar = () => {
     return (
         <div className={styles.items}>
             <Switch />
+            <Level />
 
             {menu.map((item, index) => {
                 return (

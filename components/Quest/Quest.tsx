@@ -5,6 +5,7 @@ import { GiTrophy } from 'react-icons/gi'
 import { Giver } from '../Giver'
 import { QuestTypeProps } from '../Objectives/QuestTypeProps'
 import styles from './Quest.module.scss'
+import useLocalStorage from '@rehooks/local-storage'
 
 export interface QuestProps {
     id?: number
@@ -32,6 +33,8 @@ export const Quest = ({
 }: QuestProps) => {
     const [complete, setComplete] = useState(false)
 
+    ///const hide = level && require.level > parseInt(level)
+
     function handleClick() {
         // invert the complete state
         setComplete(!complete)
@@ -47,28 +50,30 @@ export const Quest = ({
         }
     }, [id])
 
-    const ObjectiveTypes = objectives?.map((obj) => {
+    const ObjectiveTypes = objectives?.map((obj, id) => {
         // create a switch statement to handle the different types of objectives
         switch (obj.type) {
             // if the type is 'collect'
             case 'collect':
-                return <Collect {...obj} />
+                return <Collect {...obj} key={id} />
             // if the type is 'find'
             case 'find':
-                return <Find {...obj} />
+                return <Find {...obj} key={id} />
             // if the type is 'kill'
             case 'kill':
-                return <Kill {...obj} />
+                return <Kill {...obj} key={id} />
             // if the type is 'mark'
             case 'mark':
-                return <Mark {...obj} />
+                return <Mark {...obj} key={id} />
             // if the type is 'key'
             case 'key':
-                return <Key {...obj} />
+                return <Key {...obj} key={id} />
             default:
                 return null
         }
     })
+    // only return the quest if it is not hidden
+
     return (
         <div
             onClick={() => handleClick()}
@@ -100,7 +105,7 @@ export const Quest = ({
             <p>{`Completed: ${JSON.stringify(complete)}`}</p>
             {ObjectiveTypes}
             <button
-                className=' bg-orange-500 text-white rounded-lg p-6 shadow-lg border'
+                className=' py-2 px-4  bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2'
                 onClick={() => handleClick()}
             >
                 toggleCompleted
