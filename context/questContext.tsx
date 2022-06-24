@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-
-import { QuestProps } from '../components/Quest'
+import React from 'react'
 import allQuests from '../tarkovdata/quests.json'
 
 const Context = React.createContext<any>(null)
