@@ -1,33 +1,21 @@
-import { Collect, Find, Key, Kill, Mark } from './index'
-import React, { useContext, useEffect, useState } from 'react'
+import { Collect, Find, Key, Kill, Mark } from '../Objectives'
+import React, { useEffect, useState } from 'react'
 
-import { Context } from '../../context/questContext'
 import { GiTrophy } from 'react-icons/gi'
 import { Giver } from '../Giver'
-import classNames from 'classnames'
+import { QuestTypeProps } from '../Objectives/QuestTypeProps'
 import styles from './Quest.module.scss'
 
 export interface QuestProps {
     id?: number
-    objectives?: [
-        {
-            type: string
-            /**The Target of the Quest */
-            target: string
-            tool: string
-            hint: string
-            /**The amount of target*/
-            number: number
-            location: number
-            id: number
-        }
-    ]
+    objectives?: QuestTypeProps[]
     locales?: { en: string; ru: string; cs: string }
     title?: string
     wiki?: string
     unlocks?: string
     exp?: number
     giver: number
+    /**Required for kappa?*/
     nokappa?: boolean
     require: { level: number; quests: [number] }
 }
@@ -45,76 +33,40 @@ export const Quest = ({
     const [complete, setComplete] = useState(false)
 
     function handleClick() {
-        // toggleCompleted(id)
+        // invert the complete state
         setComplete(!complete)
-
-        window.localStorage.setItem(
-            // set the key to the id of the quest
-            JSON.stringify(id),
-            // set the value to the opposite of the current value
-            JSON.stringify(!complete)
-        )
+        // set the item from the local storage
+        localStorage.setItem(`is ${id} completed?`, JSON.stringify(!complete))
     }
 
     useEffect(() => {
-        const retrieve = window.localStorage.getItem(JSON.stringify(id))
-        if (retrieve === 'true') {
+        // get the value of the key id from localStorage
+        const localStorageID = localStorage.getItem(`is ${id} completed?`)
+        if (localStorageID === 'true') {
             setComplete(true)
         }
     }, [id])
 
-    const allObjectives = objectives?.map((obj) => {
-        if (obj.type === 'collect') {
-            return (
-                <Collect
-                    key={obj.id}
-                    howmuch={obj.number}
-                    target={obj.target}
-                    map={obj.location}
-                />
-            )
-        }
-        if (obj.type === 'key') {
-            return (
-                <Key
-                    key={obj.id}
-                    howmuch={obj.number}
-                    target={obj.target}
-                    map={obj.location}
-                />
-            )
-        }
-        if (obj.type === 'kill') {
-            return (
-                <Kill
-                    key={obj.id}
-                    howmuch={obj.number}
-                    target={obj.target}
-                    map={obj.location}
-                />
-            )
-        }
-        if (obj.type === 'find') {
-            return (
-                <Find
-                    key={obj.id}
-                    howmuch={obj.number}
-                    target={obj.target}
-                    map={obj.location}
-                />
-            )
-        }
-        if (obj.type === 'mark') {
-            return (
-                <Mark
-                    key={obj.id}
-                    howmuch={obj.number}
-                    target={obj.target}
-                    tool={obj.tool}
-                    hint={obj.hint}
-                    map={obj.location}
-                />
-            )
+    const ObjectiveTypes = objectives?.map((obj) => {
+        // create a switch statement to handle the different types of objectives
+        switch (obj.type) {
+            // if the type is 'collect'
+            case 'collect':
+                return <Collect {...obj} />
+            // if the type is 'find'
+            case 'find':
+                return <Find {...obj} />
+            // if the type is 'kill'
+            case 'kill':
+                return <Kill {...obj} />
+            // if the type is 'mark'
+            case 'mark':
+                return <Mark {...obj} />
+            // if the type is 'key'
+            case 'key':
+                return <Key {...obj} />
+            default:
+                return null
         }
     })
     return (
@@ -122,14 +74,19 @@ export const Quest = ({
             onClick={() => handleClick()}
             className={
                 complete
-                    ? classNames(styles.quest, styles.inactive)
-                    : classNames(styles.quest)
+                    ? ' bg-slate-700 text-white rounded-lg m-4 p-6 shadow-lg border '
+                    : 'bg-slate-400 text-slate-50 rounded-lg p-6 m-4 shadow-base border-2 border-solid border-slate-900'
             }
         >
             <div className={styles.quest__header}>
                 <Giver className={styles.quest__giver} giver={giver} />
 
-                <a href={wiki} className={styles.quest__link}>
+                <a
+                    href={wiki}
+                    className={
+                        'text-blue-600 visited:text-purple-600 hover:text-purple-600 text-2xl'
+                    }
+                >
                     &nbsp;{locales && locales.en}
                 </a>
             </div>
@@ -141,8 +98,13 @@ export const Quest = ({
 
             <p>{nokappa && `Kappa: ${JSON.stringify(nokappa)}`}</p>
             <p>{`Completed: ${JSON.stringify(complete)}`}</p>
-            {allObjectives}
-            <button onClick={() => handleClick()}>toggleCompleted</button>
+            {ObjectiveTypes}
+            <button
+                className=' bg-orange-500 text-white rounded-lg p-6 shadow-lg border'
+                onClick={() => handleClick()}
+            >
+                toggleCompleted
+            </button>
         </div>
     )
 }

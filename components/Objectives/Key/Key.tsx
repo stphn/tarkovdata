@@ -2,20 +2,15 @@ import { ImKey } from 'react-icons/im'
 import { Item } from '../../Item'
 import { ItemImage } from '../../ItemImage'
 import { Location } from '../../Location'
+import { QuestTypeProps } from '../QuestTypeProps'
 import React from 'react'
 
-interface Props {
-    howmuch: number
-    target: string
-    map: number
-}
-
-export const Key = ({ howmuch, target, map }: Props) => {
+export const Key = ({ howmuch, target, map }: QuestTypeProps) => {
     return (
         <div className='objective'>
             <ImKey /> <Item itemName={target} />
-            <span>{howmuch > 1 ? howmuch : ''}</span>
-            <span> needed </span>
+            <span>{howmuch ? howmuch > 1 : ''}</span>
+            <span>needed </span>
             <Location mapName={map} />
             <ItemImage image={target} />
         </div>
