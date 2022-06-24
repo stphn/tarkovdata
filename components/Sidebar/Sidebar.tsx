@@ -1,12 +1,11 @@
-import React, { useContext } from 'react'
-
 import { MenuItem } from '../MenuItem/MenuItem'
+import React from 'react'
 import { Switch } from '../Switch'
 import classnames from 'classnames'
 import styles from './Sidebar.module.scss'
 import { useRouter } from 'next/router'
 
-const Sidebar = () => {
+export const Sidebar = () => {
     const router = useRouter()
 
     const menu = [
@@ -39,5 +38,3 @@ const Sidebar = () => {
         </div>
     )
 }
-
-export default Sidebar
