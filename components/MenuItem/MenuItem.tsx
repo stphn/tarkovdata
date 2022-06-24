@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import { URL } from 'url'
-
 interface Props {
     /**
      * The url
