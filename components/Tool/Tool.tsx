@@ -2,7 +2,9 @@ import React from 'react'
 import items from '../../tarkovdata/items.en.json'
 
 type Props = {
+    /**The name of the tool */
     toolName?: string
+    /**The className you may want to add */
     className?: string
 }
 export const Tool: React.FC<Props> = ({ toolName, className }) => {
