@@ -10,6 +10,7 @@
     "updata": "git submodule foreach git pull origin master"
   },
   "dependencies": {
+    "@rehooks/local-storage": "^2.4.4",
     "@supabase/supabase-js": "^1.35.3",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
