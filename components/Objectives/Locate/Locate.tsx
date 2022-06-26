@@ -1,17 +1,26 @@
+import { IoMdLocate } from 'react-icons/Io'
 import { Item } from '../../Item'
 import { Location } from '../../Location'
-import { MdSettingsRemote } from 'react-icons/md'
 import { QuestObjective } from '../../Quest/QuestProps'
 import React from 'react'
-import { Tool } from '../../Tool'
 
-export const Mark = ({ number, target, map, tool, hint }: QuestObjective) => {
+export const Locate = ({
+    number,
+    target,
+    map,
+    tool,
+    hint,
+    gps,
+}: QuestObjective) => {
     return (
         <div className='objective'>
-            <MdSettingsRemote /> Place
+            <IoMdLocate /> Locate{' '}
             <span>{number && number > 1 ? number : ''} </span>
-            <Tool toolName={tool} /> at {target}
+            <span>{target} </span>
             <Item itemName={target} /> {hint && `(${hint})`}
+            <p>{gps?.leftPercent}</p>
+            <p>{gps?.topPercent}</p>
+            <p>{gps?.floor}</p>
             <Location map={map} />
         </div>
     )

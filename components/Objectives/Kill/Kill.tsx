@@ -1,13 +1,14 @@
 import { GiTargetDummy } from 'react-icons/gi'
 import { Location } from '../../Location'
-import { QuestTypeProps } from '../QuestTypeProps'
+import { QuestObjective } from '../../Quest'
 import React from 'react'
 
-export const Kill = ({ howmuch, target, map }: QuestTypeProps) => {
+export const Kill = ({ number, target, map }: QuestObjective) => {
+    const biggerThanOne = (number as number) > 1 && number
     return (
         <div className='objective'>
-            <GiTargetDummy /> Eliminate {howmuch} {target}
-            <Location mapName={map} />
+            <GiTargetDummy /> Eliminate {biggerThanOne} {target}
+            <Location map={map} />
         </div>
     )
 }

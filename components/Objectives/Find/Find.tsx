@@ -4,13 +4,13 @@ import { FaHandHolding } from 'react-icons/fa'
 import { Item } from '../../Item'
 import { ItemImage } from '../../ItemImage'
 import { Location } from '../../Location'
-import { QuestTypeProps } from '../QuestTypeProps'
+import { QuestObjective } from '../../Quest/QuestProps'
 import React from 'react'
 
-export const Find = ({ howmuch, target, map }: QuestTypeProps) => {
+export const Find = ({ number, target, map }: QuestObjective) => {
     return (
         <div className='objective'>
-            <FaHandHolding /> Hand over {howmuch}
+            <FaHandHolding /> Hand over {number}
             <Tooltip id='targetInfo'>
                 <TooltipTrigger as='span'>
                     <Item itemName={target} />
@@ -21,7 +21,7 @@ export const Find = ({ howmuch, target, map }: QuestTypeProps) => {
                     <ItemImage image={target} width={128} height={128} />
                 </TooltipContent>
             </Tooltip>
-            <Location mapName={map} />
+            <Location map={map} />
         </div>
     )
 }
