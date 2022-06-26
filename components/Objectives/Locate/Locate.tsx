@@ -1,4 +1,4 @@
-import { IoMdLocate } from 'react-icons/Io'
+import { IoMdLocate } from 'react-icons/io'
 import { Item } from '../../Item'
 import { Location } from '../../Location'
 import { QuestObjective } from '../../Quest/QuestProps'
