@@ -1,11 +1,8 @@
-import { Collect, Find, Key, Kill, Mark } from '../Objectives'
 import React, { useEffect, useState } from 'react'
 
 import { GiTrophy } from 'react-icons/gi'
 import { Giver } from '../Giver'
-import { Locate } from '../Objectives/Locate'
 import { Objective } from '../Objectives/Objective'
-import { Pickup } from '../Objectives/Pickup'
 import { QuestProps } from './QuestProps'
 import styles from './Quest.module.scss'
 import useLocalStorage from '@rehooks/local-storage'
@@ -23,8 +20,6 @@ export const Quest = ({
     const [complete, setComplete] = useState(false)
     const [hideQuests, setHideQuests] = useState(true)
     const [level] = useLocalStorage<number>('level' || 1)
-
-    console.log(level)
 
     function handleClick() {
         // invert the complete state
@@ -54,10 +49,11 @@ export const Quest = ({
         // create a switch statement to handle the different types of objectives
         return <Objective key={id} {...obj} />
     })
-    // only return the quest if it is not updated
 
     return (
         <>
+            {/* only show the quest if its required level is equal or less than
+            actual level */}
             {!hideQuests && (
                 <div
                     onClick={() => handleClick()}
