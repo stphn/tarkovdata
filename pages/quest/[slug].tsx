@@ -21,6 +21,12 @@ const QuestPost = ({
     nokappa,
     title,
     id,
+    turnin,
+    unlocks,
+    reputation,
+    reputationFailure,
+    alternatives,
+    gameId,
 }: QuestProps) => {
     return (
         <Quest
@@ -34,6 +40,12 @@ const QuestPost = ({
             require={require}
             id={id}
             nokappa={nokappa}
+            turnin={turnin}
+            unlocks={unlocks}
+            reputation={reputation}
+            reputationFailure={reputationFailure}
+            alternatives={alternatives}
+            gameId={gameId}
         />
     )
 }
