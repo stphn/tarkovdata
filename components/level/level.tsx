@@ -24,7 +24,7 @@ const IncrememterWithButtons = () => {
     if (level !== null && level < 2) decrementLevel = () => setNum(1)
 
     useEffect(() => {
-        if (level == null || level <= 2) {
+        if ((level as number) <= 2) {
             setDisplay('reseted')
         }
         if (typeof level === 'number') {
