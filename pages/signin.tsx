@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router'
 import React, { MouseEventHandler, useState } from 'react'
 
 import { supabase } from '../lib'
-import { useRouter } from 'next/router'
 
 const SignIn = () => {
     const router = useRouter()

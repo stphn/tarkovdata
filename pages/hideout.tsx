@@ -1,6 +1,7 @@
 import { Footer } from '../components/Footer'
 import { Heading } from '../components/Heading'
 import { Hideout } from '../components/Hideout'
+
 import type { NextPage } from 'next'
 
 const Quest: NextPage = () => {

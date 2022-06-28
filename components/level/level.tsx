@@ -1,46 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import {
-    deleteFromStorage,
-    useLocalStorage,
-    writeStorage,
-} from '@rehooks/local-storage'
+import React from 'react'
 
-import { Button } from '../Button'
+import levels from '../../tarkovdata/levels.json'
 
-const IncrememterWithButtons = () => {
-    const startingLevel = 1
-    const [display, setDisplay] = useState<string>('level' || startingLevel)
-
-    const [level, setNum, deleteNum] = useLocalStorage<number>(
-        'level' || startingLevel
-    )
-
-    const incrementLevel = () =>
-        setNum(level !== null ? +level + 1 : startingLevel)
-
-    let decrementLevel = () =>
-        setNum(level !== null ? +level - 1 : startingLevel)
-
-    if (level !== null && level < 2) decrementLevel = () => setNum(1)
-
-    useEffect(() => {
-        if ((level as number) <= 2) {
-            setDisplay('reseted')
-        }
-        if (typeof level === 'number') {
-            setDisplay(JSON.stringify(level))
-        }
-    }, [level])
-
-    return (
-        <div>
-            <p>Level={display}</p>
-
-            <Button onClick={() => incrementLevel()}>Increment</Button>
-            <Button onClick={() => decrementLevel()}>decrement</Button>
-            <Button onClick={deleteNum}>Delete</Button>
-        </div>
-    )
+interface LevelProps {
+    level?: number | null
 }
 
-export const Level = () => <IncrememterWithButtons />
+export const Level = ({ level }: LevelProps) => {
+    const Levels = (Object.keys(levels) as (keyof typeof levels)[]).map(
+        (lvl, i) => {
+            // index start with 1
+            const index = i + 1
+            const Level = levels[lvl]
+
+            if (level === index) {
+                return (
+                    <div key={i}>
+                        <p>{Level.group}</p>
+                        <p>{Level.exp}</p>
+                    </div>
+                )
+            }
+        }
+    )
+    return <>{Levels}</>
+}

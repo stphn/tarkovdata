@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import { supabase } from '../lib'
-import { useRouter } from 'next/router'
 
 const SignUp = () => {
     const router = useRouter()

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+
 const assets = 'https://storage.tarkov-database.com/assets/icons/1-1/128/'
 //const assets = 'https://assets.tarkov-tools.com/'
 interface Props {

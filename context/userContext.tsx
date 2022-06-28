@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { User } from '@supabase/supabase-js'
-import router from 'next/router'
+
 import { supabase } from '../lib'
 
 export const UserContext = React.createContext<any>(null)

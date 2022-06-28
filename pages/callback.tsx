@@ -1,6 +1,7 @@
-import { supabase } from '../lib'
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+
+import { supabase } from '../lib'
 
 const Callback = () => {
     const router = useRouter()

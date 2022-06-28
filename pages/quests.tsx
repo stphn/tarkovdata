@@ -1,9 +1,9 @@
 import { Footer } from '../components/Footer'
 import { Heading } from '../components/Heading'
-import type { NextPage } from 'next'
-import { QuestContext } from '../context'
 import { Quests } from '../components/Quests'
+import { QuestContext } from '../context'
 
+import type { NextPage } from 'next'
 const Quest: NextPage = () => {
     return (
         <div>
