@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { useLocalStorage } from '@rehooks/local-storage'
 
 import { Button } from '../Button'
-import { Level } from '../Level/level'
+import { Level } from '../Level'
 
 // TODO change level group and logo
 export const LevelInput = () => {
