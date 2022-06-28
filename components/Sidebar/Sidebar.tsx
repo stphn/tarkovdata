@@ -1,11 +1,10 @@
-import classnames from 'classnames'
-import { useRouter } from 'next/router'
-import React from 'react'
-
-import { LevelInput } from '../LevelInput/LevelInput'
+import { Level } from '../level/level'
 import { MenuItem } from '../MenuItem/MenuItem'
+import React from 'react'
 import { Switch } from '../Switch'
+import classnames from 'classnames'
 import styles from './Sidebar.module.scss'
+import { useRouter } from 'next/router'
 
 export const Sidebar = () => {
     const router = useRouter()
@@ -22,7 +21,7 @@ export const Sidebar = () => {
     return (
         <div className={styles.items}>
             <Switch />
-            <LevelInput />
+            <Level />
 
             {menu.map((item, index) => {
                 return (

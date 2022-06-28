@@ -1,4 +1,3 @@
-// TODO complete the implementation of JSDocs comments
 export interface QuestProps {
     /**The id of the quest */
     id: number
@@ -27,7 +26,7 @@ export interface QuestObjective {
     /**The kind of quest */
     type?: string
     /**The Target of the Quest */
-    target?: string | number
+    target?: string
     tool?: string
     hint?: string
     have?: number

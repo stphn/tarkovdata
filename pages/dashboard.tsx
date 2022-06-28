@@ -1,10 +1,9 @@
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 
+import Image from 'next/image'
 import { User } from '@supabase/supabase-js'
-
 import { supabase } from '../lib'
+import { useRouter } from 'next/router'
 
 interface DashboardProps {
     id: number

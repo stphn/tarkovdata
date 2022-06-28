@@ -1,4 +1,3 @@
-// TODO try this approach or delete file
 interface PersistentStorage {
     getItem(key: string): string | null
     setItem(key: string, value: any): void

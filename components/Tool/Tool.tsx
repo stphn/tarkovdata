@@ -1,5 +1,4 @@
 import React from 'react'
-
 import items from '../../tarkovdata/items.en.json'
 
 type Props = {

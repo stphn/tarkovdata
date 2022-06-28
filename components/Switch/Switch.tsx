@@ -1,8 +1,8 @@
-import classnames from 'classnames'
-import React, { useContext } from 'react'
 import { IoMdMoon as Moon, IoMdSunny as Sun } from 'react-icons/io'
+import React, { useContext } from 'react'
 
 import ThemeContext from '../../context/themeContext'
+import classnames from 'classnames'
 import styles from './Switch.module.scss'
 
 export const Switch = () => {

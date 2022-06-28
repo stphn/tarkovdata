@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
-
 interface Props {
-    /** The url */
+    /**
+     * The url
+     * */
     path: string
-    /** The label of the link */
     label: string
-    /** Ability to add a className to the link */
     className: string
 }
 

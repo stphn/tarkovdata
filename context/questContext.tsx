@@ -1,5 +1,4 @@
 import React from 'react'
-
 import allQuests from '../tarkovdata/quests.json'
 
 const Context = React.createContext<any>(null)

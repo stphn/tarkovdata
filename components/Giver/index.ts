@@ -1,1 +1,1 @@
-export * from './Trader'
+export * from './Giver'

@@ -1,6 +1,6 @@
-import React from 'react'
-
 import { Quest, QuestProps } from '../../components/Quest'
+
+import React from 'react'
 import quests from '../../tarkovdata/quests.json'
 
 const withCompletion: any = quests.map((quest) => {
@@ -10,7 +10,7 @@ const withCompletion: any = quests.map((quest) => {
     Object.assign(quest, completion)
     return quest
 })
-// TODO - removed the hide quests and completion state
+
 const QuestPost = ({
     locales,
     objectives,
@@ -30,7 +30,6 @@ const QuestPost = ({
 }: QuestProps) => {
     return (
         <Quest
-            isVisible={true}
             key={id}
             title={title}
             objectives={objectives}

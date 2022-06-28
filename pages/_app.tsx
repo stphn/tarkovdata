@@ -1,9 +1,9 @@
 import '../styles/globals.scss'
 
+import type { AppProps } from 'next/app'
 import { Sidebar } from '../components/Sidebar/Sidebar'
 import { ThemeProvider } from '../context/themeContext'
 
-import type { AppProps } from 'next/app'
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider>
